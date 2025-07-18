@@ -3,16 +3,26 @@ document.getElementById('schemaForm').addEventListener('submit', async function 
   e.preventDefault(); // Prevent page reload
 
   // Collect user input
-  const jobUrl = document.getElementById('job_url').value;
-  const email = document.getElementById('user_email').value;
+  const jobUrl = document.getElementById('job_url').value.trim();
+  const email = document.getElementById('user_email').value.trim();
   const resultDiv = document.getElementById('result');
   const outputPre = document.getElementById('schemaOutput');
 
-  resultDiv.textContent = 'Generating schema..';
+  resultDiv.textContent = 'Generating schema...';
   outputPre.textContent = '';
 
   // Do NOT expose API key in production!
   const apiKey = 'sk-your-api-key'; // Replace with your OpenAI API key
+
+  // Validate inputs quickly
+  if (!jobUrl) {
+    resultDiv.textContent = 'Please enter a valid Job URL.';
+    return;
+  }
+  if (!email) {
+    resultDiv.textContent = 'Please enter your email.';
+    return;
+  }
 
   // Create prompt for GPT to generate job schema
   const prompt = `Extract job details and generate schema JSON-LD from this job listing page:\n\n${jobUrl}\n\nOnly return the JSON-LD code.`;
@@ -38,12 +48,12 @@ document.getElementById('schemaForm').addEventListener('submit', async function 
     const data = await res.json();
 
     // Display result if successful
-    if (data.choices && data.choices[0]) {
+    if (data.choices && data.choices[0] && data.choices[0].message) {
       const schema = data.choices[0].message.content;
       resultDiv.textContent = 'Schema generated successfully!';
       outputPre.textContent = schema;
     } else {
-      resultDiv.textContent = ' Failed to get schema. Try again.';
+      resultDiv.textContent = 'Failed to get schema. Please try again.';
     }
 
   } catch (error) {
