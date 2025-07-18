@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Schema Crafter AI</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="form-container">
+    <h2>Schema Crafter AI</h2>
+    <p>Enter a job post URL and your email. We'll generate the structured job schema for you!</p>
+
+    <!-- Schema form -->
+    <form id="schemaForm">
+      <label>Job Post URL:</label>
+      <input type="url" id="job_url" required placeholder="https://example.com/job-posting" />
+
+      <label>Your Email:</label>
+      <input type="email" id="user_email" required placeholder="you@example.com" />
+
+      <button type="submit">Generate Schema</button>
+    </form>
+
+    <!-- Output and status messages -->
+    <div id="result" class="message"></div>
+    <pre id="schemaOutput"></pre>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
