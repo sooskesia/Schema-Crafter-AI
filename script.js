@@ -61,3 +61,4 @@ document.getElementById('schemaForm').addEventListener('submit', async function 
     resultDiv.textContent = 'Something went wrong. Please check your connection or API key.';
   }
 });
+ 
