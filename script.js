@@ -8,8 +8,7 @@ document.getElementById('schemaForm').addEventListener('submit', async function 
   const resultDiv = document.getElementById('result');
   const outputPre = document.getElementById('schemaOutput');
 
-  // Reset UI elements
-  resultDiv.textContent = 'Generating schema...';
+  resultDiv.textContent = 'Generating schema..';
   outputPre.textContent = '';
 
   // Do NOT expose API key in production!
